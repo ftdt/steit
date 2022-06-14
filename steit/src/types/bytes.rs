@@ -10,8 +10,9 @@ use crate::{
     ser::Serialize,
     wire_fmt::{HasWireType, WireType},
 };
+use serde::{Serialize as JsonSerialize, Deserialize as JsonDeserialize};
 
-#[derive(Clone, PartialEq, Eq, Default, Hash)]
+#[derive(Clone, PartialEq, Eq, Default, Hash,JsonSerialize)]
 pub struct Bytes(Vec<u8>);
 
 impl Bytes {
@@ -21,7 +22,7 @@ impl Bytes {
 
     pub fn from_value(value: &impl Serialize) -> Self {
         let mut bytes = Vec::new();
-        value.serialize(&mut bytes).unwrap();
+        value.serialize2(&mut bytes).unwrap();
         Self(bytes)
     }
 

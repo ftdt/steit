@@ -15,9 +15,13 @@ use super::{
     node::Node,
 };
 
-#[derive(Clone)]
+use serde::Serialize as JsonSerialize;
+
+#[derive(Clone, JsonSerialize)]
 pub struct Runtime {
+    #[serde(skip_serializing)]
     logger: Arc<Mutex<dyn PausableLogger>>,
+    #[serde(skip_serializing)]
     path: Arc<Node<u32>>,
 }
 

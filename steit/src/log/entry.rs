@@ -4,6 +4,7 @@ use crate::{
     steit_derive,
     types::Bytes,
 };
+use serde::Serialize as JsonSerialize;
 
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
 pub enum LogEntryKind {
@@ -14,7 +15,7 @@ pub enum LogEntryKind {
 }
 
 // `LogEntry` is flattened by putting `path` in each variant to save some serialization size.
-#[steit_derive(Clone, Debug, Serialize, Deserialize)]
+#[steit_derive(Clone, Debug, Serialize, Deserialize, JsonSerialize)]
 #[steit(steit_owned, ctor_prefix = "empty")]
 pub enum LogEntry {
     #[steit(tag = 0)]

@@ -1,11 +1,12 @@
 use std::io;
+use serde::{Serialize as JsonSerialize, Deserialize as JsonDeserialize};
 
 use super::{
     rt::SizeCache,
     wire_fmt::{HasWireType, WireType},
 };
 
-pub trait Serialize: HasWireType {
+pub trait Serialize: HasWireType  {
     fn compute_size(&self) -> u32;
     fn serialize_cached(&self, writer: &mut impl io::Write) -> io::Result<()>;
 
@@ -28,7 +29,7 @@ pub trait Serialize: HasWireType {
         }
     }
 
-    fn serialize(&self, writer: &mut impl io::Write) -> io::Result<()> {
+    fn serialize2(&self, writer: &mut impl io::Write) -> io::Result<()> {
         self.cache_size();
         self.serialize_cached(writer)
     }
@@ -88,7 +89,7 @@ pub trait Serialize: HasWireType {
 
     fn to_bytes(&self) -> Vec<u8> {
         let mut bytes = Vec::new();
-        self.serialize(&mut bytes).unwrap();
+        self.serialize2(&mut bytes).unwrap();
         bytes
     }
 }

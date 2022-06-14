@@ -5,6 +5,8 @@ use crate::{
     state::State,
 };
 
+use serde::{Serialize as JsonSerialize};
+
 #[steit_derive(Clone, PartialEq, Eq, Hash, Debug, State)]
 #[steit(steit_owned)]
 pub enum Maybe<T: State> {
