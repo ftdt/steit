@@ -19,9 +19,9 @@ use serde::Serialize as JsonSerialize;
 
 #[derive(Clone, JsonSerialize)]
 pub struct Runtime {
-    #[serde(skip_serializing)]
+    #[serde(skip)]
     logger: Arc<Mutex<dyn PausableLogger>>,
-    #[serde(skip_serializing)]
+    #[serde(skip)]
     path: Arc<Node<u32>>,
 }
 

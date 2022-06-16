@@ -15,10 +15,14 @@ use crate::{
     wire_fmt::{HasWireType, WireType},
 };
 
-#[derive(Clone, PartialEq, Eq, Default, Hash, Debug)]
+use serde::{Serialize as JsonSerialize};
+
+#[derive(Clone, PartialEq, Eq, Default, Hash, Debug, JsonSerialize)]
 pub struct List<T: State> {
     items: Vec<T>,
+    #[serde(skip)]
     size_cache: SizeCache,
+    #[serde(skip)]
     runtime: Runtime,
 }
 

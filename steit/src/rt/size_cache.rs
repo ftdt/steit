@@ -17,6 +17,7 @@ use serde::Serialize as JsonSerialize;
 /// [`CachedSize`]: https://github.com/stepancheg/rust-protobuf/blob/68c7a5a/protobuf/src/cached_size.rs
 #[derive(Default, Debug, JsonSerialize)]
 pub struct SizeCache {
+    #[serde(skip)]
     size: AtomicU32,
 }
 

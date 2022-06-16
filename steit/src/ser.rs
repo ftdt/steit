@@ -1,5 +1,4 @@
 use std::io;
-use serde::{Serialize as JsonSerialize, Deserialize as JsonDeserialize};
 
 use super::{
     rt::SizeCache,

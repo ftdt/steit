@@ -10,9 +10,9 @@ use crate::{
     ser::Serialize,
     wire_fmt::{HasWireType, WireType},
 };
-use serde::{Serialize as JsonSerialize, Deserialize as JsonDeserialize};
+use serde::{Serialize as JsonSerialize};
 
-#[derive(Clone, PartialEq, Eq, Default, Hash,JsonSerialize)]
+#[derive(Clone, PartialEq, Eq, Default, Hash, JsonSerialize)]
 pub struct Bytes(Vec<u8>);
 
 impl Bytes {
